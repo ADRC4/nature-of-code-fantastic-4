@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -13,6 +14,7 @@ public class DrawImage : MonoBehaviour
     private int _height;
     private int _size;
     private bool _isRendering = true;
+    private CancellationTokenSource _cancel = new CancellationTokenSource();
 
     private Texture2D _image;
     private Color[] _colors;
@@ -38,8 +40,11 @@ public class DrawImage : MonoBehaviour
         Task.Run(() =>
         {
             while (true)
+            {
+                _cancel.Token.ThrowIfCancellationRequested();
                 _dla.NextGeneration();
-        });
+            }
+        }, _cancel.Token);
     }
 
     private void Update()
@@ -77,5 +82,10 @@ public class DrawImage : MonoBehaviour
         GUI.skin = _skin;
         GUI.DrawTexture(_rectangle, _image);
         _isRendering = GUILayout.Toggle(_isRendering, "Toggle rendering");
+    }
+
+    private void OnApplicationQuit()
+    {
+        _cancel.Cancel();
     }
 }

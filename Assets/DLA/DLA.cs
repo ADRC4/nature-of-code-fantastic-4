@@ -13,7 +13,6 @@ public class DLA
     private readonly int _width;
     private readonly int _height;
     private readonly int[] _randomValues;
-    private int _randomIndex = 0;
 
     public DLA(int width, int height)
     {
