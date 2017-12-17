@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class DrawImage : MonoBehaviour
@@ -11,7 +12,7 @@ public class DrawImage : MonoBehaviour
     private int _width;
     private int _height;
     private int _size;
-    private int _generationsPerFrame = 5;
+    private bool _isRendering = true;
 
     private Texture2D _image;
     private Color[] _colors;
@@ -33,10 +34,18 @@ public class DrawImage : MonoBehaviour
         _rectangle = new Rect(0, 0, Screen.width, Screen.height);
         _colors = new Color[_size];
         _dla = new DLA(_width, _height);
+
+        Task.Run(() =>
+        {
+            while (true)
+                _dla.NextGeneration();
+        });
     }
 
     private void Update()
     {
+        if (!_isRendering) return;
+
         for (int i = 0; i < _size; i++)
         {
             int x = i % _width;
@@ -59,11 +68,6 @@ public class DrawImage : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < _generationsPerFrame; i++)
-        {
-            _dla.NextGeneration();
-        }
-
         _image.SetPixels(_colors);
         _image.Apply();
     }
@@ -72,7 +76,6 @@ public class DrawImage : MonoBehaviour
     {
         GUI.skin = _skin;
         GUI.DrawTexture(_rectangle, _image);
-        GUILayout.Label("Generations per frame: ");
-        _generationsPerFrame = (int)GUILayout.HorizontalSlider(_generationsPerFrame, 1, 100);
+        _isRendering = GUILayout.Toggle(_isRendering, "Toggle rendering");
     }
 }

@@ -1,13 +1,19 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using System.Threading.Tasks;
+using System.Threading;
 
 public class DLA
 {
     public int[,] Cells;
     public int GenerationCount = 0;
-    private int _width;
-    private int _height;
+
+    private readonly Random random = new Random(42);
+    private readonly int _width;
+    private readonly int _height;
+    private readonly int[] _randomValues;
+    private int _randomIndex = 0;
 
     public DLA(int width, int height)
     {
@@ -19,47 +25,63 @@ public class DLA
         for (int y = 0; y < _height; y++)
             for (int x = 0; x < _width; x++)
             {
-                bool r = Random.value < 0.01f;
+                bool r = random.NextDouble() < 0.01;
                 if (r) Cells[x, y] = 1;
             }
 
         Cells[_width / 2, _height / 2] = -1;
+
+        int size = _width * _height * 2;
+        _randomValues = new int[size];
+
+        for (int i = 0; i < size; i++)
+        {
+            _randomValues[i] = random.Next(-1, 2);
+        }
     }
 
     public void NextGeneration()
     {
         var temp = new int[_width, _height];
+        int offset = random.Next(0, _randomValues.Length / 2);
 
-        for (int y = 0; y < _height; y++)
-            for (int x = 0; x < _width; x++)
-            {
-                int count = Cells[x, y];
+        Parallel.For(0, _height, y =>
+         {
+             for (int x = 0; x < _width; x++)
+             {
+                 int count = Cells[x, y];
 
-                if (count < 0)
-                {
-                    temp[x, y] = count - 1;
-                }
-                else if (count > 0)
-                {
-                    if (HasStaticNeighbour(x, y))
-                    {
-                        temp[x, y] = -1;
-                    }
-                    else
-                    {
-                        for (int i = 0; i < count; i++)
-                        {
-                            int nx = x + Random.Range(-1, 2);
-                            int ny = y + Random.Range(-1, 2);
+                 if (count < 0)
+                 {
+                     temp[x, y] = count - 1;
+                 }
+                 else if (count > 0)
+                 {
+                     if (HasStaticNeighbour(x, y))
+                     {
+                         temp[x, y] = -1;
+                     }
+                     else
+                     {
+                         int index = x + y * _width + offset;
 
-                            nx = Wrap(nx, _width);
-                            ny = Wrap(ny, _height);
+                         if (index + count * 2 > _randomValues.Length - 1)                
+                             index = index + count * 2 - _randomValues.Length;
+                         
+                         for (int i = 0; i < count; i++)
+                         {
+                             int nx = x + _randomValues[index + i];
+                             int ny = y + _randomValues[index + i + 1];
 
-                            temp[nx, ny] += 1;
-                        }
-                    }
-                }
-            }
+                             nx = Wrap(nx, _width);
+                             ny = Wrap(ny, _height);
+
+                             temp[nx, ny] += 1;
+                         }
+                     }
+                 }
+             }
+         });
 
         Cells = temp;
         GenerationCount++;
