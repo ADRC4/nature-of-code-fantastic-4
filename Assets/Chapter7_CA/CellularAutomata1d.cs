@@ -16,7 +16,7 @@ public class CellularAutomata1d : MonoBehaviour
     public void NextGeneration()
     {
         int l = Cells.Length;
-        bool[] temp = new bool[1];
+        bool[] temp = new bool[l];
 
         for (int i = 0; i < l; i++)
         {
