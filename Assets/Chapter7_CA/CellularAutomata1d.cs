@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CellularAutomata1d : MonoBehaviour
 {
-    //yoyo
+    
     public bool[] Cells;
 
     public CellularAutomata1d()
