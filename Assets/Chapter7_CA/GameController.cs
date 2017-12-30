@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameController : MonoBehaviour {
+public class GameController : MonoBehaviour
+{
 
     public GUISkin UISkin;
     public GameObject box;
@@ -13,18 +14,21 @@ public class GameController : MonoBehaviour {
     {
         var cellular = new CellularAutomata1d();
         var length = cellular.Cells.Length;
-        int genCount = 20;
+        int genCount = cellular.Cells.Length;
 
         for (int i = 0; i < genCount; i++)
         {
             foreach (var instance in _boxes)
-                Destroy(instance);
+                transform.position += new Vector3(0, 0, 1.02f);
+                //Destroy(instance);
 
             for (int j = 0; j < length; j++)
             {
                 if (cellular.Cells[j])
                 {
-                    AddBoxToGrid(0, j, length);
+                    
+                    AddBoxToGrid(i, j, length);
+                    
                 }
             }
 
@@ -37,16 +41,18 @@ public class GameController : MonoBehaviour {
     {
         float size = 1.02f;
         float halfRow = rowCount * 0.5f;
+        
 
         var rotation = Quaternion.Euler(0, layer * 0, 0);
         var pos = new Vector3(
             (row - halfRow) * size,
-            0.5f + layer * size,
+            0.5f + layer* size,
             0
             );
         pos = rotation * pos;
         var instance = Instantiate(box, pos, rotation);
         _boxes.Add(instance);
+        layer++;
     }
 
     private void OnGUI()
