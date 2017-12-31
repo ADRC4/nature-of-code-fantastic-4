@@ -18,9 +18,7 @@ public class GameController : MonoBehaviour
 
         for (int i = 0; i < genCount; i++)
         {
-            foreach (var instance in _boxes)
-                transform.position += new Vector3(0, 0, 1.02f);
-                //Destroy(instance);
+            
 
             for (int j = 0; j < length; j++)
             {
@@ -63,6 +61,8 @@ public class GameController : MonoBehaviour
 
         if (GUILayout.Button("Animate Cellular Row"))
         {
+            //foreach (var instance in _boxes)
+            //    Destroy(instance);
             StartCoroutine(AnimateCellularRow());
         }
 

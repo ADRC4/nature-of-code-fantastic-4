@@ -4,13 +4,21 @@ using UnityEngine;
 
 public class CellularAutomata1d : MonoBehaviour
 {
-    
+
     public bool[] Cells;
 
     public CellularAutomata1d()
     {
+
         Cells = new bool[41];
-        Cells[20] = true;
+        //Cells[20] = true;
+
+
+        for (int i = 0; i < Cells.Length; i++)
+        {
+            Cells[i] = Random.Range(0, 2) == 0 ? false : true;
+        }
+
     }
 
     public void NextGeneration()
