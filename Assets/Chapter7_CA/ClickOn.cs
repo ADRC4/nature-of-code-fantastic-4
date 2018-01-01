@@ -11,7 +11,7 @@ public class ClickOn : MonoBehaviour {
 
     private MeshRenderer myRend;
 
-
+    //s;dlfkjg
 	// Use this for initialization
 	void Start () {
         myRend = GetComponent<MeshRenderer>();
