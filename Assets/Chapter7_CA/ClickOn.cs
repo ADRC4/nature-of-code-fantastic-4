@@ -11,7 +11,9 @@ public class ClickOn : MonoBehaviour {
 
     private MeshRenderer myRend;
 
-    //s;dlfkjg
+    [HideInInspector]
+    public bool currentlySelected = false;
+
 	// Use this for initialization
 	void Start () {
         myRend = GetComponent<MeshRenderer>();
@@ -19,6 +21,13 @@ public class ClickOn : MonoBehaviour {
 	
 	public void ClickMe()
     {
-        myRend.material = black;
+        if(currentlySelected == false)
+        {
+            myRend.material = white;
+        }
+        else
+        {
+            myRend.material = black;
+        }
     }
 }
