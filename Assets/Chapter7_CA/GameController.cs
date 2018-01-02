@@ -22,7 +22,7 @@ public class GameController : MonoBehaviour
 
             for (int j = 0; j < length; j++)
             {
-                if (cellular.Cells[j])
+                if (cellular.Cells[j] == 1)
                 {
                     
                     AddBoxToGrid(i, j, length);
