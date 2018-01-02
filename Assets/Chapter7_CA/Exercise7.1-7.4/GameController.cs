@@ -10,11 +10,17 @@ public class GameController : MonoBehaviour
 
     List<GameObject> _boxes = new List<GameObject>();
 
+    int generation;
+
     IEnumerator AnimateCellularRow()
     {
         var cellular = new CellularAutomata1d();
         var length = cellular.Cells.Length;
         int genCount = cellular.Cells.Length;
+
+        
+
+
 
         for (int i = 0; i < genCount; i++)
         {
@@ -29,11 +35,25 @@ public class GameController : MonoBehaviour
                     
                 }
             }
-
+            generation++;
             cellular.NextGeneration();
             yield return new WaitForSeconds(0.25f);
         }
+        
+       
     }
+
+    //bool Finished()
+    //{
+    //    var cellular = new CellularAutomata1d();
+
+    //    int genCount = cellular.Cells.Length;
+
+    //    if (generation == genCount)
+    //        return true;
+    //    else
+    //        return false;
+    //}
 
     void AddBoxToGrid(int layer, int row, int rowCount)
     {
@@ -55,17 +75,29 @@ public class GameController : MonoBehaviour
 
     private void OnGUI()
     {
+        var cellular = new CellularAutomata1d();
+
+        int genCount = cellular.Cells.Length;
+
+
         GUI.skin = UISkin;
 
         GUILayout.BeginArea(new Rect(20, 20, 200, 200));
 
         if (GUILayout.Button("Animate Cellular Row"))
         {
-            //foreach (var instance in _boxes)
-            //    Destroy(instance);
+            
             StartCoroutine(AnimateCellularRow());
         }
+        if (generation == genCount)
+        {
+            foreach (var instance in _boxes)
+                Destroy(instance);
 
+            generation = 0;
+
+            StartCoroutine(AnimateCellularRow());
+        }
         GUILayout.EndArea();
     }
 }
