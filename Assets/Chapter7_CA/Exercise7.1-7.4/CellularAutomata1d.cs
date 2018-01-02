@@ -12,17 +12,18 @@ public class CellularAutomata1d : MonoBehaviour
     {
 
         Cells = new int[41];
-        Cells[20] = 1;
+        //Cells[20] = 1;
 
        
         for (int r = 0; r < 8; r++)
         {
             ruleset[r] = Random.Range(0, 2);
         }
-        //for (int i = 0; i < Cells.Length; i++)
-        //{
-        //    Cells[i] = Random.Range(0, 2) == 0 ? false : true;
-        //}
+
+        for (int i = 0; i < Cells.Length; i++)
+        {
+            Cells[i] = Random.Range(0, 2);
+        }
 
     }
 

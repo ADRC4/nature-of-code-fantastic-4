@@ -43,17 +43,6 @@ public class GameController : MonoBehaviour
        
     }
 
-    //bool Finished()
-    //{
-    //    var cellular = new CellularAutomata1d();
-
-    //    int genCount = cellular.Cells.Length;
-
-    //    if (generation == genCount)
-    //        return true;
-    //    else
-    //        return false;
-    //}
 
     void AddBoxToGrid(int layer, int row, int rowCount)
     {
