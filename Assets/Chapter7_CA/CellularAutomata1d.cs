@@ -49,8 +49,8 @@ public class CellularAutomata1d : MonoBehaviour
 
     int NextCell(int i)
     {
-        int[] ruleset = new int[7];
-        for (int r = 0; r < 7; r++)
+        int[] ruleset = new int[8];
+        for (int r = 0; r < 8; r++)
         {
             ruleset[r] = Random.Range(0, 2);
         }
