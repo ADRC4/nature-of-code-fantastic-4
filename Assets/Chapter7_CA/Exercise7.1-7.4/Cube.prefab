@@ -109,3 +109,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   white: {fileID: 2100000, guid: 4f8444bf3a170ea4a988110808469a93, type: 2}
   black: {fileID: 2100000, guid: c24b3b267c03c9b40af32d60c2fbef46, type: 2}
+  currentlySelected: 0

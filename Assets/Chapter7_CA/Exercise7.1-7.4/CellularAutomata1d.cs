@@ -43,7 +43,7 @@ public class CellularAutomata1d : MonoBehaviour
     //public Randomnize()
     //{
         
-        //
+
         
     //}
 
