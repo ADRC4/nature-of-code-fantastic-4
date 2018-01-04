@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameController : MonoBehaviour
+public class GameController7_1 : MonoBehaviour
 {
 
     public GUISkin UISkin;
@@ -19,9 +19,6 @@ public class GameController : MonoBehaviour
         int genCount = cellular.Cells.Length;
 
         
-
-
-
         for (int i = 0; i < genCount; i++)
         {
             
