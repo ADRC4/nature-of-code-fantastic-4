@@ -46,7 +46,7 @@ public class Vehicles : MonoBehaviour
 
             for (int i =0; i < _Vehicles.Capacity ; i++)
             {
-
+                //_Vehicles[i] = new Vector2(0,0);
             }
         }
     }
