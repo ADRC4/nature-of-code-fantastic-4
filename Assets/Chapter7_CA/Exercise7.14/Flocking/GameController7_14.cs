@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Level : MonoBehaviour {
+public class GameController7_14 : MonoBehaviour {
 
     public Transform memberPrefab;
     public Transform enemyPrefab;
@@ -12,9 +12,14 @@ public class Level : MonoBehaviour {
     public List<Enemy> enemies;
     public float bounds;
     public float spawnRadius;
-    
+
+    public MemberConfig conf;
+
     // Use this for initialization
-	void Start () {
+    void Start () {
+
+        conf = FindObjectOfType<MemberConfig>();
+
         members = new List<Member>();
         enemies = new List<Enemy>();
 
@@ -34,6 +39,8 @@ public class Level : MonoBehaviour {
         }
     }
 
+    
+
     public List<Member> GetNeighbors(Member member, float radius)
     {
         List<Member> neighborsFound = new List<Member>();
@@ -43,13 +50,17 @@ public class Level : MonoBehaviour {
             if (otherMember == member)
                 continue;
 
+        
+
             if (Vector3.Distance(member.position, otherMember.position) <= radius)
             {
                 neighborsFound.Add(otherMember);
             }
-
-            //return neighborsFound;
+                        
+            
         }
+
+        
 
         return neighborsFound;
     }
@@ -66,5 +77,8 @@ public class Level : MonoBehaviour {
         }
         return returnEnemies;
     }
-	
+
+    
+
 }
+ 

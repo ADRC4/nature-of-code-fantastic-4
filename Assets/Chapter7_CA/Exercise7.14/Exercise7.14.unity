@@ -145,12 +145,13 @@ MonoBehaviour:
     type: 2}
   enemyPrefab: {fileID: 4817902886664506, guid: 218e3681d6ff4624ea64ad6634b18053,
     type: 2}
-  numberOfMembers: 50
+  numberOfMembers: 100
   numberOfEnemies: 5
   members: []
   enemies: []
-  bounds: 10
-  spawnRadius: 5
+  bounds: 100
+  spawnRadius: 100
+  conf: {fileID: 0}
 --- !u!4 &221459867
 Transform:
   m_ObjectHideFlags: 0
@@ -176,20 +177,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxFOV: 120
-  maxAcceleration: 5
-  maxVelocity: 5
+  maxAcceleration: 40
+  maxVelocity: 25
   wanderJitter: 10
   wanderRadius: 2
   wanderDistance: 3
   wanderPriority: 10
-  alignmentRadius: 2
-  alignmentPriority: 10
-  separationRadius: 4
-  separationPriority: 20
-  avoidanceRadius: 2
-  avoidancePriority: 20
-  cohesionRadius: 10
-  cohesionPriority: 70
+  alignmentRadius: 10
+  alignmentPriority: 90
+  separationRadius: 6
+  separationPriority: 90
+  avoidanceRadius: 40
+  avoidancePriority: 700
+  cohesionRadius: 20
+  cohesionPriority: 60
 --- !u!1 &780207713
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,7 +306,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 168
   orthographic: 0
   orthographic size: 5
   m_Depth: -1

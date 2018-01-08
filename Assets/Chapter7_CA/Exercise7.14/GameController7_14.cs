@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameController7_14 : MonoBehaviour
+public class GameController7_14_Archive : MonoBehaviour
 {
     public GameObject box;
 

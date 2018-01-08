@@ -8,4 +8,9 @@ public class Enemy : Member {
     {
         return conf.wanderPriority * Wander();
     }
+
+    
+
+    
 }
+

@@ -3,19 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Member : MonoBehaviour {
+    public Transform enemyPrefab;
+
 
     public Vector3 position;
     public Vector3 velocity;
     public Vector3 acceleration;
 
-    public Level level;
+    public GameController7_14 level;
     public MemberConfig conf;
 
     Vector3 wanderTarget;
 
     void Start()
     {
-        level = FindObjectOfType<Level>();
+        level = FindObjectOfType<GameController7_14>();
         conf = FindObjectOfType<MemberConfig>();
 
         position = transform.position;
@@ -31,15 +33,24 @@ public class Member : MonoBehaviour {
         position = position + velocity * Time.deltaTime;
         WrapAround(ref position, -level.bounds, level.bounds);
         transform.position = position;
+
+        var neighbors = level.GetNeighbors(this, conf.cohesionRadius);
+        if (neighbors.Count == 2)
+        {
+            Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
+
     }
+
 
     protected Vector3 Wander()
     {
         float jitter = conf.wanderJitter * Time.deltaTime;
-        wanderTarget += new Vector3(0, RandomBinomial() * jitter, 0);
+        wanderTarget += new Vector3(RandomBinomial()* jitter, RandomBinomial() * jitter, 0);
         wanderTarget = wanderTarget.normalized;
         wanderTarget *= conf.wanderRadius;
-        Vector3 targetInLocalSpace = wanderTarget + new Vector3(0, conf.wanderDistance, 0);
+        Vector3 targetInLocalSpace = wanderTarget + new Vector3(conf.wanderDistance, conf.wanderDistance, 0);
         Vector3 targetInWorldSpace = transform.TransformPoint(targetInLocalSpace);
         targetInWorldSpace -= this.position;
         return targetInWorldSpace.normalized;
@@ -69,7 +80,7 @@ public class Member : MonoBehaviour {
         cohesionVector = cohesionVector - this.position;
         cohesionVector = Vector3.Normalize(cohesionVector);
 
-        return cohesionVector.normalized;
+        return cohesionVector;
     }
 
     Vector3 Alignment()
@@ -162,4 +173,6 @@ public class Member : MonoBehaviour {
     {
         return Vector3.Angle(this.velocity, vec - this.position) <= conf.maxFOV;
     }
+
+
 }
