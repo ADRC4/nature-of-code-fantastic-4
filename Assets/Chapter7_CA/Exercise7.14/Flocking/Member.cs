@@ -35,7 +35,7 @@ public class Member : MonoBehaviour {
         transform.position = position;
 
         var neighbors = level.GetNeighbors(this, conf.cohesionRadius);
-        if (neighbors.Count == 2)
+        if (neighbors.Count == 1)
         {
             Instantiate(enemyPrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);

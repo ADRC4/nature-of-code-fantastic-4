@@ -4,4 +4,13 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 0
+    path: Assets/Chapter7_CA/Exercise7.14/Exercise7.14.unity
+    guid: 5cc2b930303c49e4492b7af5ead74467
+  - enabled: 0
+    path: Assets/Chapter7_CA/Exercise7.3/Exercise7.3.unity
+    guid: 9d0390bd63654cf42810d96aed711fbb
+  - enabled: 1
+    path: Assets/Chapter7_CA/Exercise7.1/Exercise7.1.unity
+    guid: 85b3de8a147aa0e4393b795a9cf006dc
