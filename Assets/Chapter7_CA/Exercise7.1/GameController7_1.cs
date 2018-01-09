@@ -9,7 +9,7 @@ public class GameController7_1 : MonoBehaviour
     public GameObject box;
 
     List<GameObject> _boxes = new List<GameObject>();
-
+    
     int generation;
 
     IEnumerator AnimateCellularRow()
