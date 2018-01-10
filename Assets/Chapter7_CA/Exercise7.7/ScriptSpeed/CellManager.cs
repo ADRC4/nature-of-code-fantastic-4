@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CellManager : MonoBehaviour
+public class CellManager : MonoBehaviour //class one the setup
 {
 
     public float timeStep = 0.1f; //time delay : or the cell will disapear too fast
@@ -18,32 +18,32 @@ public class CellManager : MonoBehaviour
             for (int y = 0; y < mapheight; y++) // the cell
             {
                 GameObject localcell = Instantiate(cellPrefab, new Vector3(x, y), Quaternion.identity); //This quaternion corresponds to "no rotation" - the object is perfectly aligned with the world or parent axes.
-                localcell.AddComponent<Cell>().cellManager = this; //this inside this myMethod it(`this`) will refer to myInstance
-                cells.Add(new Vector3(x, y), localcell);
+                localcell.AddComponent<Cell>().cellManager = this; //this inside this myMethod it(`this`) will refer to myInstance  !!!myInstance!!!
+                cells.Add(new Vector3(x, y), localcell); //add the cell(i mean remain it, or else it'll disapear right after i clik it!!!) i messed up the first time with this.
             }
         }
     }
 }
 
-public class Cell : MonoBehaviour
+public class Cell : MonoBehaviour //how does the cell behavior
 {
     public CellManager cellManager;
 
-    public bool alive;
-    SpriteRenderer spRend;
+    public bool alive; //state 0 or 1(dead or alive)
+    SpriteRenderer spRend; //change the cell state
     private void Awake()
     {
         spRend = GetComponent<SpriteRenderer>();
 
     }
 
-    void OnMouseDown()
+    void OnMouseDown() //press
     {
-        alive = true;
-        for (int i = 0; i < 2; i++)
+        alive = true; //press to true(alive)
+        for (int i = 0; i < 2; i++) //the valume of the initial cell, 20 cell //2 to make it square 5 to make it a cross
         {
             GameObject _cell;
-            if (cellManager.cells.TryGetValue(MatePosition(i), out _cell))
+            if (cellManager.cells.TryGetValue(MatePosition(i), out _cell)) //detect the position of the neighbor TGetValue : Item property boolean type : 0/1 false/true.
             {
                 _cell.GetComponent<Cell>().alive = true;
             }
@@ -51,28 +51,28 @@ public class Cell : MonoBehaviour
     }
 
 
-    float timer;
+    float timer; // timer like up there.
     void Update()
     {
         
         timer += Time.deltaTime;
-        if (timer >= cellManager.timeStep)
+        if (timer >= cellManager.timeStep)//the time that stay on the grid
         {
 
 
             if (!alive)
             {
-                spRend.color = Color.white;
+                spRend.color = Color.white; //dead or alive
             }
             else
             {
-                spRend.color = Color.black;
+                spRend.color = Color.black;//dead or alive
             }
-            if (alive && GetAliveMates() < 2)
+            if (alive && GetAliveMates() < 2)  //rule of dead or alive //2
             {
                 alive = false;
             }
-            else if (alive && GetAliveMates() <= 3)
+            else if (alive && GetAliveMates() <= 3) //des wrap the cell //3
             {
                 alive = true;
             }
@@ -85,7 +85,7 @@ public class Cell : MonoBehaviour
             {
                 alive = true;
             }
-            timer = 0;
+            timer = 0;//run time too fast
         }
     }
 
@@ -99,13 +99,13 @@ public class Cell : MonoBehaviour
             {
                 if (cell.GetComponent<Cell>().alive)
                 {
-                    count += 1;
+                    count = count + 1; //stay on the grid
                 }
             }
         }
         return count;
     }
-    Vector3 MatePosition(int i)
+    Vector3 MatePosition(int i) //all about the neighbors, I'm using a really bad way to do this as it almost crashed my laptop.
     {
         if (i == 0)
         {
@@ -146,5 +146,7 @@ public class Cell : MonoBehaviour
         }
     }
 }
+
+
 
 
