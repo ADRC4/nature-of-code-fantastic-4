@@ -5,20 +5,20 @@ using UnityEngine;
 public class CellManager : MonoBehaviour
 {
 
-    public float timeStep = 0.1f;
+    public float timeStep = 0.1f; //time delay : or the cell will disapear too fast
 
-    public int mapwidth = 50, mapheight = 50;
+    public int mapwidth = 50, mapheight = 50;  //the size of the grid (start)
     public GameObject cellPrefab;
-    public Dictionary<Vector3, GameObject> cells = new Dictionary<Vector3, GameObject>();
+    public Dictionary<Vector3, GameObject> cells = new Dictionary<Vector3, GameObject>(); //with a box collider, add a floor
 
     void Start()
     {
-        for (int x = 0; x < mapwidth; x++)
+        for (int x = 0; x < mapwidth; x++) //infi loof if it's --, add cell 
         {
-            for (int y = 0; y < mapheight; y++)
+            for (int y = 0; y < mapheight; y++) // the cell
             {
-                GameObject localcell = Instantiate(cellPrefab, new Vector3(x, y), Quaternion.identity);
-                localcell.AddComponent<Cell>().cellManager = this;
+                GameObject localcell = Instantiate(cellPrefab, new Vector3(x, y), Quaternion.identity); //This quaternion corresponds to "no rotation" - the object is perfectly aligned with the world or parent axes.
+                localcell.AddComponent<Cell>().cellManager = this; //this inside this myMethod it(`this`) will refer to myInstance
                 cells.Add(new Vector3(x, y), localcell);
             }
         }
