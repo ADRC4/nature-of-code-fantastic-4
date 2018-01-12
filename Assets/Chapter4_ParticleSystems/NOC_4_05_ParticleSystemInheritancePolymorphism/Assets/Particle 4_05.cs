@@ -14,14 +14,14 @@ public class Particle4_05 : MonoBehaviour
     int width;
     int height;
 
-    //ΤΕΣΤ
+    Particle4_05 p;
 
 
     public Particle4_05(Vector2 l)
     {
-        float rx = Random.Range(-1, 1);
-        float ry = Random.Range(-2, 1);
-        acceleration = new Vector2(0, 0.05f);
+        float rx = Random.Range(-5, 5);
+        float ry = Random.Range(-5, 5);
+        acceleration = new Vector2(0, -2.0f);
         velocity = new Vector2(rx, ry);
         location = l;
         lifespan = 255.0f;
@@ -31,7 +31,7 @@ public class Particle4_05 : MonoBehaviour
 
     bool ΙsDead()
     {
-        if (lifespan < 0.0)
+        if (p.lifespan < 0.0)
         {
             return true;
         }
@@ -48,15 +48,19 @@ public class Particle4_05 : MonoBehaviour
         width = Camera.main.pixelWidth;
         height = Camera.main.pixelHeight;
         image = new Texture2D(width, height);
+
+        p = new Particle4_05(new Vector2(width / 2, height * 4 / 5));
     }
 
 
     // Update is called once per frame
     void Update()
     {
-        velocity += acceleration;
-        location += velocity;
-        lifespan -= 2;
+
+
+        p.velocity += p.acceleration;
+        p.location += p.velocity;
+        p.lifespan -= 2;
 
         DrawCircle();
 
@@ -66,23 +70,23 @@ public class Particle4_05 : MonoBehaviour
 
     void DrawCircle()
     {
-        
+
 
 
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
             {
-                float dx = location.x - x;
-                float dy = location.y - y;
+                float dx = p.location.x - x;
+                float dy = p.location.y - y;
                 float distance = Mathf.Sqrt(dx * dx + dy * dy);
                 Color color;
 
-                if (distance < 200)
+                if (distance < 10)
                 {
                     color = Color.gray;
                 }
-                else if(distance>200 && distance <205)
+                else if (distance > 10 && distance < 12)
                 {
                     color = Color.black;
                 }
@@ -101,6 +105,8 @@ public class Particle4_05 : MonoBehaviour
 
 
 
+
+
         image.Apply();
     }
 
@@ -110,7 +116,7 @@ public class Particle4_05 : MonoBehaviour
         var rectangle = new Rect(0, 0, width, height);
         GUI.DrawTexture(rectangle, image);
 
-        
+
     }
 
 }
