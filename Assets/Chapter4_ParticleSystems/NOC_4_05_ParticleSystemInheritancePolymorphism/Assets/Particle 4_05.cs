@@ -19,12 +19,12 @@ public class Particle4_05 : MonoBehaviour
 
     public Particle4_05(Vector2 l)
     {
-        float rx = Random.Range(-5, 5);
+        float rx = Random.Range(-10, 10);
         float ry = Random.Range(-5, 5);
         acceleration = new Vector2(0, -2.0f);
         velocity = new Vector2(rx, ry);
         location = l;
-        lifespan = 255.0f;
+        lifespan = 1.0f;
 
 
     }
@@ -60,7 +60,7 @@ public class Particle4_05 : MonoBehaviour
 
         p.velocity += p.acceleration;
         p.location += p.velocity;
-        p.lifespan -= 2;
+        p.lifespan -= 0.05f;
 
         DrawCircle();
 
@@ -84,11 +84,11 @@ public class Particle4_05 : MonoBehaviour
 
                 if (distance < 10)
                 {
-                    color = Color.gray;
+                    color = Color.gray * p.lifespan;
                 }
                 else if (distance > 10 && distance < 12)
                 {
-                    color = Color.black;
+                    color = Color.black * p.lifespan;
                 }
                 else
                 {
