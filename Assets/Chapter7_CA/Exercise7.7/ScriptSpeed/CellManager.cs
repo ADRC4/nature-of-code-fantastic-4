@@ -142,7 +142,7 @@ public class Cell : MonoBehaviour //how does the cell behavior
         }
         else
         {
-            return Vector3.zero;
+            return new Vector3(0, 0, 0); //Vector3.zero
         }
     }
 }
