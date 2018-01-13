@@ -6,7 +6,7 @@ public class CA_2D
 {
     public bool[] Cells;
     Texture2D _image;
-
+    
     Rect _rectangle;
     int _size;
     Color[] _colors;
@@ -24,17 +24,17 @@ public class CA_2D
         _rectangle = new Rect(20, Screen.height - (_width * scale) - 30, _width * scale, _height * scale);//hope this would make the box center of the screen
         _colors = new Color[_size];
 
-        for (int i = 0; i < _height; i++)
-        {
-            if (cells[i] == 0)
-            {
-                _colors[i] = Color.white;
-            }
-            else
-            {
-                _colors[i] = Color.gray;
-            }
-        }
+        //for (int i = 0; i < _height; i++) //set the cell conditions, suppose 1==dead 0==alive, but how to set it??
+        //{
+        //    //if (cells == false)
+        //    {
+        //        _colors[i] = Color.white;
+        //    }
+        //    else
+        //    {
+        //        _colors[i] = Color.gray;
+        //    }
+        //}
 
         _image.SetPixels(_colors);
         _image.Apply();
