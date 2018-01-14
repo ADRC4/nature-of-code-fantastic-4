@@ -43,64 +43,64 @@ public class Exercise7_17_Rule90 : MonoBehaviour {
         }
     }
     float timer;
-    int GetCellState(int x, int y)
-    {
-        if (y < 0 || y >= m_rows)
-            return 0;
+    //int GetCellState(int x, int y)
+    //{
+    //    if (y < 0 || y >= m_rows)
+    //        return 0;
 
-        if (x < 0 || x >= m_columns)
-            return 0;
+    //    if (x < 0 || x >= m_columns)
+    //        return 0;
 
-        return m_current[x, y];
-    }
+    //    return m_current[x, y];
+    //}
 
-    int GetNeighborsState(int x, int y)
-    {
-        int total = 0;
-        for (int j = -1; j <= 1; j++)
-        {
-            for (int i = -1; i <= 1; i++)
-            {
-                total += GetCellState(x + i, y + j);
-            }
-        }
-        return total;
-    }
+    //int GetNeighborsState(int x, int y)
+    //{
+    //    int total = 0;
+    //    for (int j = -1; j <= 1; j++)
+    //    {
+    //        for (int i = -1; i <= 1; i++)
+    //        {
+    //            total += GetCellState(x + i, y + j);
+    //        }
+    //    }
+    //    return total;
+    //}
 
     void UpdateCell(int x, int y)
 
     {
         timer += Time.deltaTime;
-        var neighbors = GetNeighborsState(x, y);
-        var state = m_current[x, y];
-        var next = state;
-        if (state == 1)
-        {
-            if (neighbors < 2 || neighbors > 3) //cell range dead
-            {
-                next = 0; // Death
-            }
-        }
-        else
-        {
-            if (neighbors == 3)
-            {
-                next = 1; // Alive
-            }
-        }
+        ////var neighbors = GetNeighborsState(x, y);
+        //var state = m_current[x, y];
+        //var next = state;
+        //if (state == 1)
+        //{
+        //    if (neighbors < 2 || neighbors > 3) //cell range dead
+        //    {
+        //        next = 0; // Death
+        //    }
+        //}
+        //else
+        //{
+        //    if (neighbors == 3)
+        //    {
+        //        next = 1; // Alive
+        //    }
+        //}
 
-        m_next[x, y] = next;
+        //m_next[x, y] = next;
     }
 
     void UpdateAllCells()
     {
-        for (int y = 0; y < m_rows; y++)
-        {
-            for (int x = 0; x < m_columns; x++)
-            {
-                UpdateCell(x, y);
-            }
-        }
+        //for (int y = 0; y < m_rows; y++)
+        //{
+        //    for (int x = 0; x < m_columns; x++)
+        //    {
+        //        UpdateCell(x, y);
+        //    }
+        //}
 
         var pixels = new Color32[m_columns * m_rows];
         for (int y = 0; y < m_rows; y++)
@@ -147,18 +147,18 @@ public class Exercise7_17_Rule90 : MonoBehaviour {
             m_texture = null;
         }
     }
-    public void NextGeneration()
-    {
-        int l = Cells.Length;
-        bool[] temp = new bool[l];
+    //public void NextGeneration()
+    //{
+    //    int l = Cells.Length;
+    //    bool[] temp = new bool[l];
 
-        for (int i = 0; i < l; i++)
-        {
-            temp[i] = NextCell(i);
-        }
+    //    for (int i = 0; i < l; i++)
+    //    {
+    //        temp[i] = NextCell(i);
+    //    }
 
-        Cells = temp;
-    }
+    //    Cells = temp;
+    //}
     bool NextCell(int i)
     {
         int l = Cells.Length;
