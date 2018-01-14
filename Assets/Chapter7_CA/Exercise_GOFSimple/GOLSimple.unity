@@ -144,7 +144,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startColumns: 64
   startRows: 64
-  material: {fileID: 2100000, guid: 5f505955452de804497d639ac681e012, type: 2}
+  timeStep: 100
+  material: {fileID: 2100000, guid: d60850632ee503645b424b0cd476b28d, type: 2}
 --- !u!23 &1436108775
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -159,7 +160,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d60850632ee503645b424b0cd476b28d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

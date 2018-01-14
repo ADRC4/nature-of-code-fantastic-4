@@ -6,7 +6,7 @@ public class SimpleGOL : MonoBehaviour {
 
     public int startColumns = 64;
     public int startRows = 64;
-
+    public float timeStep = 0.1f;
     public Material material;
 
     int m_columns;
@@ -38,7 +38,7 @@ public class SimpleGOL : MonoBehaviour {
             }
         }
     }
-
+    float timer;
     int GetCellState(int x, int y)
     {
         if (y < 0 || y >= m_rows)
@@ -64,7 +64,9 @@ public class SimpleGOL : MonoBehaviour {
     }
 
     void UpdateCell(int x, int y)
+
     {
+        timer += Time.deltaTime;
         var neighbors = GetNeighborsState(x, y);
         var state = m_current[x, y];
         var next = state;
