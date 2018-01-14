@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Exercise7_17_Rule90 : MonoBehaviour {
-
+    public bool[] Cells;
     public int startColumns = 64;
     public int startRows = 64;
     public float timeStep = 0.1f;
@@ -16,7 +16,11 @@ public class Exercise7_17_Rule90 : MonoBehaviour {
 
     int[,] m_current;
     int[,] m_next;
-
+    public Exercise7_17_Rule90()
+    {
+        Cells = new bool[41];
+        Cells[20] = true;
+    }
     void Awake()
     {
         m_columns = startColumns;
@@ -72,7 +76,7 @@ public class Exercise7_17_Rule90 : MonoBehaviour {
         var next = state;
         if (state == 1)
         {
-            if (neighbors < 2 || neighbors > 3)
+            if (neighbors < 2 || neighbors > 3) //cell range dead
             {
                 next = 0; // Death
             }
@@ -81,7 +85,7 @@ public class Exercise7_17_Rule90 : MonoBehaviour {
         {
             if (neighbors == 3)
             {
-                next = 1; // Birth
+                next = 1; // Alive
             }
         }
 
