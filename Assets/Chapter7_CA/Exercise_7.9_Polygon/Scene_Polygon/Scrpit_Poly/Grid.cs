@@ -34,8 +34,8 @@ public class Grid : MonoBehaviour {
         if (gridHeight / 2 % 2 != 0)
             offset = hexWidth / 2;
 
-        float x = -hexWidth * (gridWidth / 2) - offset;
-        float z = hexHeight * 0.75f * (gridHeight / 2);
+        float x = -hexWidth * (gridWidth / 2) - offset; //divide
+        float z = hexHeight * 0.75f * (gridHeight / 2); 
 
         startPos = new Vector3(x, 0, z);
     }
