@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Exercise7_17_Rule90 : MonoBehaviour {
-    public bool[] Cells;
+public class Exercise_7_17_Rule90 : MonoBehaviour
+{
+
     public int startColumns = 64;
     public int startRows = 64;
     public float timeStep = 0.1f;
@@ -16,11 +17,7 @@ public class Exercise7_17_Rule90 : MonoBehaviour {
 
     int[,] m_current;
     int[,] m_next;
-    public Exercise7_17_Rule90()
-    {
-        Cells = new bool[41];
-        Cells[20] = true;
-    }
+
     void Awake()
     {
         m_columns = startColumns;
@@ -43,64 +40,64 @@ public class Exercise7_17_Rule90 : MonoBehaviour {
         }
     }
     float timer;
-    //int GetCellState(int x, int y)
-    //{
-    //    if (y < 0 || y >= m_rows)
-    //        return 0;
+    int GetCellState(int x, int y)
+    {
+        if (y < 0 || y >= m_rows)
+            return 0;
 
-    //    if (x < 0 || x >= m_columns)
-    //        return 0;
+        if (x < 0 || x >= m_columns)
+            return 0;
 
-    //    return m_current[x, y];
-    //}
+        return m_current[x, y];
+    }
 
-    //int GetNeighborsState(int x, int y)
-    //{
-    //    int total = 0;
-    //    for (int j = -1; j <= 1; j++)
-    //    {
-    //        for (int i = -1; i <= 1; i++)
-    //        {
-    //            total += GetCellState(x + i, y + j);
-    //        }
-    //    }
-    //    return total;
-    //}
+    int GetNeighborsState(int x, int y)
+    {
+        int total = 0;
+        for (int j = -1; j <= 1; j++)
+        {
+            for (int i = -1; i <= 1; i++)
+            {
+                total += GetCellState(x + i, y + j);
+            }
+        }
+        return total;
+    }
 
     void UpdateCell(int x, int y)
 
     {
         timer += Time.deltaTime;
-        ////var neighbors = GetNeighborsState(x, y);
-        //var state = m_current[x, y];
-        //var next = state;
-        //if (state == 1)
-        //{
-        //    if (neighbors < 2 || neighbors > 3) //cell range dead
-        //    {
-        //        next = 0; // Death
-        //    }
-        //}
-        //else
-        //{
-        //    if (neighbors == 3)
-        //    {
-        //        next = 1; // Alive
-        //    }
-        //}
+        var neighbors = GetNeighborsState(x, y);
+        var state = m_current[x, y];
+        var next = state;
+        if (state == 1)
+        {
+            if (neighbors < 2 || neighbors > 3)
+            {
+                next = 0; // Death
+            }
+        }
+        else
+        {
+            if (neighbors == 3)
+            {
+                next = 1; // Birth
+            }
+        }
 
-        //m_next[x, y] = next;
+        m_next[x, y] = next;
     }
 
     void UpdateAllCells()
     {
-        //for (int y = 0; y < m_rows; y++)
-        //{
-        //    for (int x = 0; x < m_columns; x++)
-        //    {
-        //        UpdateCell(x, y);
-        //    }
-        //}
+        for (int y = 0; y < m_rows; y++)
+        {
+            for (int x = 0; x < m_columns; x++)
+            {
+                UpdateCell(x, y);
+            }
+        }
 
         var pixels = new Color32[m_columns * m_rows];
         for (int y = 0; y < m_rows; y++)
@@ -146,30 +143,5 @@ public class Exercise7_17_Rule90 : MonoBehaviour {
             Object.Destroy(m_texture);
             m_texture = null;
         }
-    }
-    //public void NextGeneration()
-    //{
-    //    int l = Cells.Length;
-    //    bool[] temp = new bool[l];
-
-    //    for (int i = 0; i < l; i++)
-    //    {
-    //        temp[i] = NextCell(i);
-    //    }
-
-    //    Cells = temp;
-    //}
-    bool NextCell(int i)
-    {
-        int l = Cells.Length;
-        bool cell = Cells[i];
-        bool left = (i == 0) ? Cells[l - 1] : Cells[i - 1];
-        bool right = (i == l - 1) ? Cells[0] : Cells[i + 1];
-
-        if (left && right) return false;
-        if (!cell && (left || right)) return true;
-        if (cell && left) return false;
-
-        return cell;
     }
 }
