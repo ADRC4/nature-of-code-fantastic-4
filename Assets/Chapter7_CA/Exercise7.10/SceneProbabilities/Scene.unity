@@ -356,9 +356,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e0387c6930a8b84ea986f2aa79f1293, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridSize: 10
-  updateDelay: 0.04
-  cellPrefab: {fileID: 1191483921647564, guid: 77b51ee7d8fc5fe4bbb36333be961df3, type: 2}
 --- !u!1 &2111630593
 GameObject:
   m_ObjectHideFlags: 0
@@ -368,6 +365,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2111630595}
   - component: {fileID: 2111630594}
+  - component: {fileID: 2111630596}
   m_Layer: 0
   m_Name: MapGenerator
   m_TagString: Untagged
@@ -386,13 +384,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efd8e4756c5eb18429c09438f07634e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GridBox: {fileID: 0}
-  TileBox: {fileID: 0}
-  width: 50
-  height: 50
-  seed: 
-  useRandomSeed: 1
-  randomFillPercent: 44
 --- !u!4 &2111630595
 Transform:
   m_ObjectHideFlags: 0
@@ -406,3 +397,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2111630596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2111630593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5ce6144bf299e848a935d509af937af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GridBox: {fileID: 1191483921647564, guid: 77b51ee7d8fc5fe4bbb36333be961df3, type: 2}
+  TileBox: {fileID: 1191483921647564, guid: 77b51ee7d8fc5fe4bbb36333be961df3, type: 2}
+  width: 50
+  height: 50
+  seed: 
+  useRandomSeed: 1
+  randomFillPercent: 23
