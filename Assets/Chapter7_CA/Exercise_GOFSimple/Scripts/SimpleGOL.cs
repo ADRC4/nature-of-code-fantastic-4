@@ -25,8 +25,8 @@ public class SimpleGOL : MonoBehaviour {
         m_texture = new Texture2D(m_columns, m_rows);
         m_texture.filterMode = FilterMode.Point;
 
-        m_current = new int[m_columns, m_rows];
-        m_next = new int[m_columns, m_rows];
+        m_current = new int[m_columns, m_rows]; //Create 2D int array is the size of rows
+        m_next = new int[m_columns, m_rows]; //Create 2D int array is the size of rows
 
         for (int y = 0; y < m_rows; y++)
         {
@@ -53,9 +53,9 @@ public class SimpleGOL : MonoBehaviour {
     int GetNeighborsState(int x, int y)
     {
         int total = 0;
-        for (int j = 0; j <= 1; j++) //end 
+        for (int j = -1; j <= 1; j++) //end  -1/0 
         {
-            for (int i = -1; i <= 1; i++)
+            for (int i = -1; i <= 1; i++)  //for loof, i=0, i-1=-1 out of array bond, wrap around = i = 0, the left has no cell.
             {
                 total += GetCellState(x + i, y + j);
             }
