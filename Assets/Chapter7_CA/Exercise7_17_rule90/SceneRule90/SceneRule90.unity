@@ -204,12 +204,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 361289191}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4d939f20e4640245820a4572c105506, type: 3}
+  m_Script: {fileID: 11500000, guid: 6ea9b880e1815aa47b7a1dcbe8d7fbfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startColumns: 64
-  startRows: 64
-  timeStep: 0.1
   material: {fileID: 2100000, guid: 12474e51814c8404eb12e1a8961255f5, type: 2}
 --- !u!23 &361289193
 MeshRenderer:
