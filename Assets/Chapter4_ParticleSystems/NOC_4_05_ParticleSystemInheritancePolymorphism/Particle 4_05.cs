@@ -9,7 +9,7 @@ public class Particle4_05 : MonoBehaviour
     Vector2 velocity;
     Vector2 acceleration;
     float lifespan;
-
+    //
     Texture2D image;
     int width;
     int height;
