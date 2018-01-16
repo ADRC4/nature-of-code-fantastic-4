@@ -2,29 +2,86 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameController7_14_Archive : MonoBehaviour
-{
-    public GameObject box;
+public class GameController7_14 : MonoBehaviour {
 
-    List<GameObject> _boxes = new List<GameObject>();
+    //Acknowledge Jared in youtube channel Renaissance Coders
+    //https://www.youtube.com/watch?v=payFhNs9hvs&list=PL4CCSwmU04MhfoJTJWA7n2AIB4dq6umeu
 
-    IEnumerator AnimateFlocking()
+    public Transform memberPrefab;
+    public Transform enemyPrefab;
+    public int numberOfMembers;
+    public int numberOfEnemies;
+    public List<Member> members;
+    public List<Enemy> enemies;
+    public float bounds;
+    public float spawnRadius;
+
+    public MemberConfig conf;
+
+    // Use this for initialization
+    void Start () {
+
+        conf = FindObjectOfType<MemberConfig>();
+
+        members = new List<Member>();
+        enemies = new List<Enemy>();
+
+        Spawn(memberPrefab, numberOfMembers);
+        Spawn(enemyPrefab, numberOfEnemies);
+
+        members.AddRange(FindObjectsOfType<Member>());
+        enemies.AddRange(FindObjectsOfType<Enemy>());
+	}
+	
+    void Spawn(Transform prefab, int count)
     {
-        var vehicles = new Vehicles();
-
-        yield return new WaitForSeconds(0.25f);
+        for(int i=0; i < count;i++)
+        {
+            Instantiate(prefab, new Vector3(Random.Range(-spawnRadius, spawnRadius), Random.Range(-spawnRadius, spawnRadius), 0), 
+                Quaternion.identity);
+        }
     }
 
-    private void OnGUI()
+    
+
+    public List<Member> GetNeighbors(Member member, float radius)
     {
+        List<Member> neighborsFound = new List<Member>();
 
-        GUILayout.BeginArea(new Rect(20, 20, 200, 200));
-
-        if (GUILayout.Button("Animate Flocking"))
+        foreach (var otherMember in members)
         {
-            StartCoroutine(AnimateFlocking());
+            if (otherMember == member)
+                continue;
+
+        
+
+            if (Vector3.Distance(member.position, otherMember.position) <= radius)
+            {
+                neighborsFound.Add(otherMember);
+            }
+                        
+            
         }
 
-        GUILayout.EndArea();
+        
+
+        return neighborsFound;
     }
-}//go
+
+    public List<Enemy> GetEnemies (Member member, float radius)
+    {
+        List<Enemy> returnEnemies = new List<Enemy>();
+        foreach (var enemy in enemies)
+        {
+            if (Vector3.Distance(member.position, enemy.position) <= radius)
+            {
+                returnEnemies.Add(enemy);
+            }
+        }
+        return returnEnemies;
+    }
+
+    
+
+}
+ 
