@@ -6,7 +6,7 @@ public class SimpleGOL : MonoBehaviour {
 
     public int startColumns = 64;
     public int startRows = 64;
-    public float timeStep = 0.1f; //cant slow down the wime.
+    
     public Material material;
 
     int m_columns;
@@ -30,7 +30,7 @@ public class SimpleGOL : MonoBehaviour {
 
         for (int y = 0; y < m_rows; y++)
         {
-            for (int x = 0; x < m_columns; x++)
+            for (int x = 0; x < m_columns; x++) //start loop
             {
                 var state = Random.Range(0, 2);
                 m_current[x, y] = state;
@@ -66,8 +66,8 @@ public class SimpleGOL : MonoBehaviour {
     void UpdateCell(int x, int y)
 
     {
-        timer += Time.deltaTime;
-        var neighbors = GetNeighborsState(x, y);
+        
+        var neighbors = GetNeighborsState(x, y);//var i = 10; // implicitly typed //int i = 10; //explicitly typed   
         var state = m_current[x, y];
         var next = state;
         if (state == 1)
@@ -90,7 +90,7 @@ public class SimpleGOL : MonoBehaviour {
 
     void UpdateAllCells()
     {
-        for (int y = 0; y < m_rows; y++)
+        for (int y = 0; y < m_rows; y++) //generate the start
         {
             for (int x = 0; x < m_columns; x++)
             {
