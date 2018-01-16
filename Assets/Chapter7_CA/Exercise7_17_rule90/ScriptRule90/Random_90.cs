@@ -18,7 +18,7 @@ public class Random_90 : MonoBehaviour {
     {
         cells = new int[width];
 
-        texture = new Texture2D(width, height);
+        texture = new Texture2D(width, height); //add another tex
         texture.filterMode = FilterMode.Point;
 
         var pixels = new Color32[width * height];
