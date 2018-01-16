@@ -6,7 +6,7 @@ public class SimpleGOL : MonoBehaviour {
 
     public int startColumns = 64;
     public int startRows = 64;
-    public float timeStep = 0.1f;
+    public float timeStep = 0.1f; //cant slow down the wime.
     public Material material;
 
     int m_columns;
