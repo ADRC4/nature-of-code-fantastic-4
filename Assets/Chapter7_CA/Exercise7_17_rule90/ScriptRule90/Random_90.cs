@@ -42,11 +42,11 @@ public class Random_90 : MonoBehaviour {
     void generate()
     {
         var nextgen = new int[cells.Length];
-        for (int i = 1; i < cells.Length - 1; i++)
+        for (int i = 1; i < cells.Length - 1; i++) 
         {
             var left = cells[i - 1];
             var me = cells[i];
-            var right = cells[i + 1];
+            var right = cells[i + 1];                     // add cell
             nextgen[i] = rules(left, me, right);
         }
         cells = nextgen;
@@ -55,7 +55,7 @@ public class Random_90 : MonoBehaviour {
 
     int rules(int a, int b, int c)
     {
-        if (a == 1 && b == 1 && c == 1) return ruleset[0];
+        if (a == 1 && b == 1 && c == 1) return ruleset[0]; //the rule for modifying 
         if (a == 1 && b == 1 && c == 0) return ruleset[1];
         if (a == 1 && b == 0 && c == 1) return ruleset[2];
         if (a == 1 && b == 0 && c == 0) return ruleset[3];
@@ -90,7 +90,7 @@ public class Random_90 : MonoBehaviour {
 
     bool isFinished()
     {
-        return generation > height / 2 - 3;
+        return generation > height / 2 - 3; //the plan
     }
 
     void Update()
