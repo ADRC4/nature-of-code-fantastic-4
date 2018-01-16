@@ -56,7 +56,7 @@ public class Random_90 : MonoBehaviour {
     int rules(int a, int b, int c)
     {
         if (a == 1 && b == 1 && c == 1) return ruleset[0]; //the rule for modifying 
-        if (a == 1 && b == 1 && c == 0) return ruleset[1];
+        if (a == 1 && b == 1 && c == 0) return ruleset[1]; //a==0 ori==1
         if (a == 1 && b == 0 && c == 1) return ruleset[2];
         if (a == 1 && b == 0 && c == 0) return ruleset[3];
         if (a == 0 && b == 1 && c == 1) return ruleset[4];
