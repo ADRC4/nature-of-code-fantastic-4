@@ -10,7 +10,7 @@ public class Random_90 : MonoBehaviour {
     private int width = 128;
     private int height = 128;
 
-    private int[] ruleset = new int[] { 0, 1, 0, 1, 1, 0, 1, 0 };
+    private int[] ruleset = new int[] { 0, 1, 0, 1, 1, 0, 1, 0 }; //rule 90 rules, can change (rule30:0	0	0	1	1	1	1	0)(rule 110:0	1	1	0	1	1	1	0)
     private int[] cells;
     private int generation;
 
