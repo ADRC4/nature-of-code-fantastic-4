@@ -13,8 +13,8 @@ public class CA_Persent : MonoBehaviour {
     public string seed;
     public bool useRandomSeed;
 
-    [Range(0, 100)]
-    public int randomFillPercent;
+    [Range(0, 100)] //the range
+    public int randomFillPercent; //filling the map(how much)
 
 
 
@@ -23,7 +23,7 @@ public class CA_Persent : MonoBehaviour {
 
     void Start()
     {
-        GenerateMap();
+        GenerateMap();//call void generate map
     }
 
     void Update()
@@ -36,7 +36,7 @@ public class CA_Persent : MonoBehaviour {
     }
     void GenerateMap()
     {
-        map = new int[width, height];
+        map = new int[width, height]; //size cells
         RandomFillMap();
         for (int i = 0; i < 2; i++)
         {
@@ -45,25 +45,25 @@ public class CA_Persent : MonoBehaviour {
 
     }
 
-    void RandomFillMap()
+    void RandomFillMap() //work based on the seed to the same map -- string seed, bool use random seed
     {
         if (useRandomSeed)
         {
             seed = Time.time.ToString();
         }
 
-        System.Random pseudoRandom = new System.Random(seed.GetHashCode());
-        for (int x = 0; x < width; x++)
+        System.Random pseudoRandom = new System.Random(seed.GetHashCode());//int seed, seed gethashcde-random code for the seed
+        for (int x = 0; x < width; x++) //start grid loop for the map
         {
             for (int y = 0; y < height; y++)
             {
-                if (x == 0 || x == width - 1 || y == 0 || y == height - 1)
+                if (x == 0 || x == width - 1 || y == 0 || y == height - 1)//or, 
                 {
-                    map[x, y] = 1;
+                    map[x, y] = 1; //0/1
                 }
                 else
                 {
-                    map[x, y] = pseudoRandom.Next(0, 100) < (randomFillPercent) ? 1 : 0;
+                    map[x, y] = pseudoRandom.Next(0, 100) < (randomFillPercent) ? 1 : 0; //min and max <add wall, 
                 }
 
             }
@@ -71,7 +71,7 @@ public class CA_Persent : MonoBehaviour {
 
     }
 
-    void SmoothMap()
+    void SmoothMap() //persentage 
     {
         for (int x = 0; x < width; x++)
         {
@@ -79,31 +79,31 @@ public class CA_Persent : MonoBehaviour {
             {
                 int neighbourWallTiles = GetSurroundingWallCount(x, y);
 
-                if (neighbourWallTiles > 4)
-                    map[x, y] = 1;
-                else if (neighbourWallTiles < 4)
-                    map[x, y] = 0;
+                if (neighbourWallTiles > 4) //modify the persnt
+                    map[x, y] = 1; //wall
+                else if (neighbourWallTiles < 4) 
+                    map[x, y] = 0; //empty
             }
         }
     }
-    int GetSurroundingWallCount(int gridX, int gridY)
+    int GetSurroundingWallCount(int gridX, int gridY) //CA rules which tile we want the info
     {
         int wallCount = 0;
-        for (int neighbourX = gridX - 1; neighbourX <= gridX + 1; neighbourX++)
+        for (int neighbourX = gridX - 1; neighbourX <= gridX + 1; neighbourX++) //nei X  x+=y x=x+y
         {
-            for (int neighbourY = gridY - 1; neighbourY <= gridY + 1; neighbourY++)
+            for (int neighbourY = gridY - 1; neighbourY <= gridY + 1; neighbourY++) //nei Y
             {
-                if (neighbourX >= 0 && neighbourX < width && neighbourY >= 0 && neighbourY < height)
+                if (neighbourX >= 0 && neighbourX < width && neighbourY >= 0 && neighbourY < height)//looping 3 by 3,,, safe inside, do calculate
                 {
                     if (neighbourX != gridX || neighbourY != gridY)
                     {
-                        wallCount += map[neighbourX, neighbourY];
+                        wallCount += map[neighbourX, neighbourY];    //wall count in, wall count no effect
                     }
 
 
                     else
                     {
-                        wallCount++;
+                        wallCount++; //edge
                     }
                 }
             }
@@ -124,7 +124,7 @@ public class CA_Persent : MonoBehaviour {
                 for (int y = 0; y < height; y++)
                 {
                     Gizmos.color = (map[x, y] == 1) ? Color.white : Color.gray;
-                    Vector3 pos = new Vector3(-width / 2 + x + 0.5f, 0, -height / 2 + y + 0.5f);
+                    Vector3 pos = new Vector3(-width / 2 + x + 0.5f, 0, -height / 2 + y + 0.5f); //position of the Giz
                     Gizmos.DrawCube(pos, Vector3.one);
                 }
             }
