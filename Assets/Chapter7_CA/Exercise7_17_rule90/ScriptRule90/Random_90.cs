@@ -10,7 +10,7 @@ public class Random_90 : MonoBehaviour {
     private int width = 128;
     private int height = 128;
 
-    private int[] ruleset = new int[] { 0, 1, 0, 1, 1, 0, 1, 0 };
+    private int[] ruleset = new int[] { 0, 1, 0, 1, 1, 0, 1, 0 }; //rule 90 rules, can change (rule30:0	0	0	1	1	1	1	0)(rule 110:0	1	1	0	1	1	1	0)
     private int[] cells;
     private int generation;
 
@@ -18,7 +18,7 @@ public class Random_90 : MonoBehaviour {
     {
         cells = new int[width];
 
-        texture = new Texture2D(width, height);
+        texture = new Texture2D(width, height); //add another tex
         texture.filterMode = FilterMode.Point;
 
         var pixels = new Color32[width * height];
@@ -56,7 +56,7 @@ public class Random_90 : MonoBehaviour {
     int rules(int a, int b, int c)
     {
         if (a == 1 && b == 1 && c == 1) return ruleset[0]; //the rule for modifying 
-        if (a == 1 && b == 1 && c == 0) return ruleset[1];
+        if (a == 1 && b == 1 && c == 0) return ruleset[1]; //a==0 ori==1
         if (a == 1 && b == 0 && c == 1) return ruleset[2];
         if (a == 1 && b == 0 && c == 0) return ruleset[3];
         if (a == 0 && b == 1 && c == 1) return ruleset[4];
