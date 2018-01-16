@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GameController7_14 : MonoBehaviour {
 
+    //Acknowledge Jared in youtube channel Renaissance Coders
+    //https://www.youtube.com/watch?v=payFhNs9hvs&list=PL4CCSwmU04MhfoJTJWA7n2AIB4dq6umeu
+
     public Transform memberPrefab;
     public Transform enemyPrefab;
     public int numberOfMembers;
