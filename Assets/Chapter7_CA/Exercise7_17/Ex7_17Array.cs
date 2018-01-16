@@ -14,7 +14,7 @@ public class Ex7_17Array : MonoBehaviour {
     int _height;
     int[] cells = { 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0 }; //the initial statement of the cell
 	void Start () {
-
+        //
         int scale = 20;//scale up or it would be too small
         _width = 400 / scale;
         _height = 400 / scale;

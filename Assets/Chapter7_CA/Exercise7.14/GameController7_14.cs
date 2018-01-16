@@ -27,4 +27,4 @@ public class GameController7_14_Archive : MonoBehaviour
 
         GUILayout.EndArea();
     }
-}
+}//go
