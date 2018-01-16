@@ -6,7 +6,7 @@ public class SimpleGOL : MonoBehaviour {
 
     public int startColumns = 64;
     public int startRows = 64;
-    public float timeStep = 0.1f;
+    public float timeStep = 0.1f; //cant slow down the wime.
     public Material material;
 
     int m_columns;
@@ -53,7 +53,7 @@ public class SimpleGOL : MonoBehaviour {
     int GetNeighborsState(int x, int y)
     {
         int total = 0;
-        for (int j = -1; j <= 1; j++)
+        for (int j = 0; j <= 1; j++) //end 
         {
             for (int i = -1; i <= 1; i++)
             {
@@ -81,7 +81,7 @@ public class SimpleGOL : MonoBehaviour {
         {
             if (neighbors == 3)
             {
-                next = 1; // Birth
+                next = 1; // alive
             }
         }
 
